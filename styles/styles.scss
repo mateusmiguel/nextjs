@@ -1,0 +1,18 @@
+// resets and mixins
+@import 'resets/reset';
+@import 'mixins/mixins';
+
+// base files
+@import 'base/base';
+@import 'base/colors';
+@import 'base/fonts';
+@import 'base/typo';
+
+// components
+@import 'components/header';
+@import 'components/nav';
+@import 'components/main';
+@import 'components/footer';
+
+// utils
+@import 'utils/utils';
