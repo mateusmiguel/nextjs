@@ -10411,7 +10411,7 @@ var About = function About() {
 
 /***/ }),
 
-/***/ 3:
+/***/ 4:
 /*!********************************************************************************************************************************!*\
   !*** multi next-client-pages-loader?page=%2Fabout&absolutePagePath=%2Fhome%2Fmateus%2FDocuments%2Fnext-app%2Fpages%2Fabout.js ***!
   \********************************************************************************************************************************/
@@ -10434,5 +10434,5 @@ module.exports = dll_6b5a3ee2368b61971f52;
 
 /***/ })
 
-},[[3,"static/runtime/webpack.js","styles"]]]);
+},[[4,"static/runtime/webpack.js","styles"]]]);
 //# sourceMappingURL=about.js.map

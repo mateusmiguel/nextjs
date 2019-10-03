@@ -9,6 +9,8 @@ bower_componets
 
 *.sublime*
 
+.next
+
 psd
 thumb
 sketch
