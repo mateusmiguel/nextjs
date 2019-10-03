@@ -1,1 +1,0 @@
-{"name":"next-app","version":"1.0.0","description":"Tests with next.js framework.","main":"index.js","author":{"name":"Mateus Miguel"},"license":"MIT","dependencies":{"@zeit/next-sass":"^1.0.1","next":"^9.0.7","node-sass":"^4.12.0","react":"^16.10.1","react-dom":"^16.10.1"},"scripts":{"dev":"next"},"readme":"ERROR: No README data found!","_id":"next-app@1.0.0"}
