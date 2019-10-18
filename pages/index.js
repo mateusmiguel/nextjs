@@ -1,14 +1,25 @@
-import React from 'react';
-import Layout from '../layouts/Layout';
+import React, { Component } from "react";
+import "isomorphic-fetch";
+import Layout from "../layouts/Layout";
 
-const Index = () => {
-  return (
-    <Layout>
-      <h1>Home</h1>
+class Index extends Component {
+  static getInitialProps = async () => {
+    const res = await fetch('https://api.github.com/users/mateusmiguel/repos')
+    return { repositories: await res.json() };
+  };
 
-      <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Hic eaque explicabo inventore cum totam? Eligendi iure a odit, fugit reiciendis natus voluptate dolorum aliquid vel veniam quos, cupiditate, aperiam dignissimos?</p>
-    </Layout>
-  );
-};
+  render() {
+    return (
+      <Layout>
+        <h1>Home</h1>
+        <ul>
+          {this.props.repositories.map(repo => (
+            <li key={repo.id}>{repo.name}</li>
+          ))}
+        </ul>
+      </Layout>
+    );
+  }
+}
 
 export default Index;
