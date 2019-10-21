@@ -11,7 +11,7 @@ const Layout = ({children}) => {
           <Menu />
       </header>
       
-      <main className="main contained">
+      <main className="main">
         {children}
       </main>
       

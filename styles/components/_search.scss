@@ -1,0 +1,14 @@
+.search {
+  input {
+    padding: 4px;
+  }
+  ul {
+    columns: 4;
+    li {
+      list-style-type: none;
+      margin: 0;
+      padding: 6px 0;
+      border-bottom: 1px #ebebeb solid;
+    }
+  }
+}
