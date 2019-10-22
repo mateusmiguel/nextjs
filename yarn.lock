@@ -5078,6 +5078,11 @@ react-error-overlay@5.1.6:
   resolved "https://registry.yarnpkg.com/react-error-overlay/-/react-error-overlay-5.1.6.tgz#0cd73407c5d141f9638ae1e0c63e7b2bf7e9929d"
   integrity sha512-X1Y+0jR47ImDVr54Ab6V9eGk0Hnu7fVWGeHQSOXHf/C2pF9c6uy3gef8QUeuUiWlNb0i08InPSE5a/KJzNzw1Q==
 
+react-filter-search@^1.0.8:
+  version "1.0.8"
+  resolved "https://registry.yarnpkg.com/react-filter-search/-/react-filter-search-1.0.8.tgz#4ffb4ebfcfbd6ddcf36a3922d430f1cc0afdbf94"
+  integrity sha512-yhzdCO3wVPA+oz8Y82tBkU5XRJPX7QyJtxiX15Ecb1pADxjdzEp1HRhwRcTKvta0J3dWCDSiF6A1q5OWjJrQjA==
+
 react-is@16.8.6:
   version "16.8.6"
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-16.8.6.tgz#5bbc1e2d29141c9fbdfed456343fe2bc430a6a16"

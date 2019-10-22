@@ -7,53 +7,62 @@ class Search extends React.Component {
     this.state = {
       error: null,
       isLoaded: false,
-      items: [],
-      query: '',
+      partners: [],
+      findedPartners: [],
+      query: 'ax',
     };
   }
 
   componentDidMount() {
     fetch("http://www.json-generator.com/api/json/get/cgolXDSgQy?indent=2")
-      .then(res => res.json())
-      .then(
-        (result) => {
-          this.setState({
-            isLoaded: true,
-            items: result
-          });
-        },
-        (error) => {
-          this.setState({
-            isLoaded: true,
-            error
-          });
-        }
-      )
+    .then(res => res.json())
+    .then(
+      (result) => {
+        this.setState({
+          isLoaded: true,
+          partners: result
+        });
+      },
+      (error) => {
+        this.setState({
+          isLoaded: true,
+          error
+        });
+      }
+    );
+
+  }
+
+  componentDidUpdate(prevState) {
+    console.log('finder: ', this.state.query);
+    console.log('partners: ', this.state.findedPartners)
   }
 
   handleInputChange = () => {
     this.setState({
       query: this.search.value
     });
-
-    if (this.state.query && this.state.query.length === 1) {
-        console.log(this.state.query.charAt(0))
   }
 
-    // () => {
-    //   if (this.state.query && this.state.query.length === 1) {
-    //     console.log(this.state.query.charAt(0))
+  // função que faz a busca
+  handlePartners = () => {
+    const { partners } = this.state;
+    
+    let finder = this.search.value;
 
-    //   } 
-    //   else if (this.state.query.length % 2 === 0) {
-    //     //... e aqui chama o filtro interno
-    //     console.log(this.state.query.length)
-    //   }
-    // })
+    var findedPartners =  partners.filter(function(partner) {
+      return eval('/'+finder+'/').test(partner.company);
+    });
+
+    this.setState({
+      findedPartners: findedPartners
+    });
+    
   }
 
   render() {
-    const { error, isLoaded, items } = this.state;
+    const { error, isLoaded, partners,findedPartners  } = this.state;
+  
     if (error) {
       return <div>Error: {error.message}</div>;
     } else if (!isLoaded) {
@@ -67,15 +76,19 @@ class Search extends React.Component {
               <input
                 placeholder="Search for..."
                 ref={input => this.search = input}
-                onChange={this.handleInputChange}
+                onChange={this.handlePartners}
               />
             </form>       
             <ul>
-              {items.map(item => (
-                <li key={item.company}>
-                  {item.company}
-                </li>
-              ))}
+              {findedPartners &&
+              
+                findedPartners.map(item => (
+                  <li key={item.company}>
+                    {item.company}
+                  </li>
+                ))
+              }
+
             </ul>
           </div>
         </Layout>
