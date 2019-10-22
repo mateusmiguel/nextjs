@@ -30,7 +30,8 @@ class Search extends React.Component {
         (result) => {
           this.setState({
             isLoaded: true,
-            partners: result.data.data
+            partners: result.data.data,
+            findedPartners: result.data.data,
           });
         },
         (error) => {
@@ -49,37 +50,46 @@ class Search extends React.Component {
 
 
   render() {
-    const { error, isLoaded, partners, findedPartners } = this.state;
+    const { error, isLoaded, findedPartners } = this.state;
 
-    if (error) {
-      return <div>Error: {error.message}</div>;
-    } else if (!isLoaded) {
-      return <div>Loading...</div>;
-    } else {
-      return (
-        <Layout>
-          <h1>Search</h1>
-          <div className="search">
-            <form onSubmit={e => { e.preventDefault(); }}> 
-              <input
-                placeholder="Search for..."
-                onChange={e => { this.handleSearch(e.target.value) }}
-              />
-            </form>
-            <ul>
-              {findedPartners &&
-                findedPartners.map((item, key) => (
-                  <li key={key}>
-                    {item.nomeFantasia}
-                  </li>
-                ))
-              }
-            </ul>
-          </div>
-        </Layout>
-      );
-    }
+    // if (error) {
+    //   return <div>Error: {error.message}</div>;
+    // } else if (!isLoaded) {
+    //   return <div>Loading...</div>;
+    // } else {
+
+    return (
+      <Layout>
+        <h1>Search</h1>
+
+        {error ? (
+          <p>Não foi possível carregar a lista de parceiros no momento. Tente novamente em alguns instantes.</p>
+        ) : !isLoaded? (
+          <p>carregando...</p>
+        ) : (
+            <div className="search">
+
+              <form onSubmit={e => { e.preventDefault(); }}>
+                <input
+                  placeholder="Search for..."
+                  onChange={e => { this.handleSearch(e.target.value) }}
+                />
+              </form>
+              <ul>
+                {findedPartners &&
+                  findedPartners.map((item, key) => (
+                    <li key={key}>
+                      {item.nomeFantasia}
+                    </li>
+                  ))
+                }
+              </ul>
+            </div>
+          )}
+      </Layout>
+    );
   }
 }
+// }
 
 export default Search;
