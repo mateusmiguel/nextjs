@@ -43,9 +43,8 @@ class Search extends React.Component {
   }
 
   handleSearch = debounce(searchTerm => {
-    this.setState({
-      findedPartners: this.state.partners.filter(partner => partner.nomeFantasia.includes(searchTerm.toUpperCase()))
-    })
+    let findedPartners = this.state.partners.filter(partner => partner.nomeFantasia.includes(searchTerm.toUpperCase()) || partner.cnpj.includes(searchTerm));
+    this.setState({ findedPartners })
   }, 300)
 
 
