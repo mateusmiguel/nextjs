@@ -1,6 +1,17 @@
 import React, { Component } from "react";
 import Layout from "../layouts/Layout";
 
+function debounce(a, b, c) {
+  var d, e;
+  return function () {
+    function h() {
+      d = null, c || (e = a.apply(f, g))
+    }
+    var f = this,
+      g = arguments;
+    return clearTimeout(d), d = setTimeout(h, b), c && !d && (e = a.apply(f, g)), e
+  }
+}
 class Search extends React.Component {
   constructor(props) {
     super(props);
@@ -9,60 +20,38 @@ class Search extends React.Component {
       isLoaded: false,
       partners: [],
       findedPartners: [],
-      query: 'ax',
     };
   }
 
   componentDidMount() {
-    fetch("http://www.json-generator.com/api/json/get/cgolXDSgQy?indent=2")
-    .then(res => res.json())
-    .then(
-      (result) => {
-        this.setState({
-          isLoaded: true,
-          partners: result
-        });
-      },
-      (error) => {
-        this.setState({
-          isLoaded: true,
-          error
-        });
-      }
-    );
-
+    fetch("http://nodeserver.local.debug.site:8080/convenios")
+      .then(res => res.json())
+      .then(
+        (result) => {
+          this.setState({
+            isLoaded: true,
+            partners: result.data.data
+          });
+        },
+        (error) => {
+          this.setState({
+            isLoaded: true,
+            error
+          });
+        }
+      );
   }
 
-  componentDidUpdate(prevState) {
-    console.log('finder: ', this.state.query);
-    console.log('partners: ', this.state.findedPartners)
-  }
-
-  handleInputChange = () => {
+  handleSearch = debounce(searchTerm => {
     this.setState({
-      query: this.search.value
-    });
-  }
+      findedPartners: this.state.partners.filter(partner => partner.nomeFantasia.includes(searchTerm.toUpperCase()))
+    })
+  }, 300)
 
-  // função que faz a busca
-  handlePartners = () => {
-    const { partners } = this.state;
-    
-    let finder = this.search.value;
-
-    var findedPartners =  partners.filter(function(partner) {
-      return eval('/'+finder+'/').test(partner.company);
-    });
-
-    this.setState({
-      findedPartners: findedPartners
-    });
-    
-  }
 
   render() {
-    const { error, isLoaded, partners,findedPartners  } = this.state;
-  
+    const { error, isLoaded, partners, findedPartners } = this.state;
+
     if (error) {
       return <div>Error: {error.message}</div>;
     } else if (!isLoaded) {
@@ -72,23 +61,20 @@ class Search extends React.Component {
         <Layout>
           <h1>Search</h1>
           <div className="search">
-            <form>
+            <form onSubmit={e => { e.preventDefault(); }}> 
               <input
                 placeholder="Search for..."
-                ref={input => this.search = input}
-                onChange={this.handlePartners}
+                onChange={e => { this.handleSearch(e.target.value) }}
               />
-            </form>       
+            </form>
             <ul>
               {findedPartners &&
-              
-                findedPartners.map(item => (
-                  <li key={item.company}>
-                    {item.company}
+                findedPartners.map((item, key) => (
+                  <li key={key}>
+                    {item.nomeFantasia}
                   </li>
                 ))
               }
-
             </ul>
           </div>
         </Layout>
