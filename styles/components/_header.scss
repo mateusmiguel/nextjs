@@ -1,18 +1,26 @@
 .header {
   grid-area: header;
-  background: $base-color;
+  background: $white;
   padding: 30px;
-  display: flex;
-  justify-content: space-between;
   align-items: center;
+  > div {
+    display: flex;
+    justify-content: space-between;
+    margin: 0 auto;
+    max-width: 1200px;
+    padding: 0 25px;
+    box-sizing: border-box;
+
+  }
 
   .logo {
-    color: $white;
+    color: $base-text;
     font-size: 24px;
     font-weight: 700;
     letter-spacing: -2px;
     > span {
       font-weight: 300;
+      color: $base-color;
     }
   }
 }

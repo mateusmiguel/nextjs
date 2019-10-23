@@ -1,8 +1,13 @@
 //Define colors
 $white:           #fff;
+$silver:          #EBE3D8;
+$silver-darker:   #444444;
 $blue:            #2c3e50;
 $blue-darker:     #13101D;
+$orange:          #F5821F;
 
 // Define project colors
-$base-color:      $blue;
+$base-color:      $orange;
 $darker-color:    $blue-darker;
+$base-bg:         $silver;
+$base-text:       $silver-darker;

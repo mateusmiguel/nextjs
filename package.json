@@ -12,10 +12,10 @@
     "node-sass": "^4.12.0",
     "react": "^16.10.1",
     "react-debounce-input": "^3.2.2",
-    "react-dom": "^16.10.1",
-    "react-filter-search": "^1.0.8"
+    "react-dom": "^16.10.1"
   },
   "scripts": {
     "dev": "next"
-  }
+  },
+  "devDependencies": {}
 }
