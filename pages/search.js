@@ -19,7 +19,7 @@ class Search extends React.Component {
       error: null,
       isLoaded: false,
       partners: [],
-      findedPartners: [],
+      findedPartners: []
     };
   }
 
@@ -43,6 +43,8 @@ class Search extends React.Component {
       }
     );
   }
+  
+
 
   handleSearch = debounce(searchTerm => {
     let findedPartners = this.state.partners.filter(partner => partner.nomeFantasia.includes(searchTerm.toUpperCase()) || partner.cnpj.includes(searchTerm));
@@ -72,10 +74,15 @@ class Search extends React.Component {
                 <button type="submit">S</button>
               </form>
               <ul>
+                <li class="search-title">
+                  <p>EMPRESA</p>
+                  <p>CNPJ</p>  
+                </li>
                 {findedPartners &&
                   findedPartners.map((item, key) => (
                     <li key={key}>
-                      {item.nomeFantasia.toLowerCase()}
+                      <p>{item.nomeFantasia.toLowerCase()}</p>
+                      <p>{item.cnpj}</p>
                     </li>
                   ))
                 }
