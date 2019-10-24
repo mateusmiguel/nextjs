@@ -65,7 +65,6 @@ class Search extends React.Component {
           <p>Carregando...</p>
         ) : (
             <div className="search">
-
               <form onSubmit={e => { e.preventDefault(); }}>
                 <input
                   placeholder="Busque uma empresa..."
@@ -73,20 +72,22 @@ class Search extends React.Component {
                 />
                 <button type="submit">S</button>
               </form>
-              <ul>
-                <li class="search-title">
+              {findedPartners.length > 0 ? (
+                <ul>
+                <li className="search-title">
                   <p>EMPRESA</p>
                   <p>CNPJ</p>  
                 </li>
-                {findedPartners &&
-                  findedPartners.map((item, key) => (
-                    <li key={key}>
-                      <p>{item.nomeFantasia.toLowerCase()}</p>
-                      <p>{item.cnpj}</p>
-                    </li>
-                  ))
-                }
+                {findedPartners && findedPartners.map((item, key) => (
+                  <li key={key}>
+                    <p>{item.nomeFantasia.toLowerCase()}</p>
+                    <p>{item.cnpj}</p>
+                  </li>
+                ))}
               </ul>
+              ) : (
+                <p>Não foi possível encontrar nenhuma empresa com esse nome</p>
+              )}
             </div>
           )}
       </Layout>
